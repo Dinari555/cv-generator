@@ -1,0 +1,54 @@
+{
+  "info": {
+    "name": "CV Generator API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": { "method": "GET", "url": "http://localhost:3000/health" }
+    },
+    {
+      "name": "List CVs",
+      "request": { "method": "GET", "url": "http://localhost:3000/api/cvs" }
+    },
+    {
+      "name": "Create CV",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nom\": \"Doe\",\n  \"prenom\": \"John\",\n  \"email\": \"john.doe@mail.com\",\n  \"tel\": \"+33612345678\",\n  \"skills\": [\"JavaScript\", \"React\"]\n}"
+        },
+        "url": "http://localhost:3000/api/cvs"
+      }
+    },
+    {
+      "name": "Get CV by id",
+      "request": { "method": "GET", "url": "http://localhost:3000/api/cvs/{{cvId}}" }
+    },
+    {
+      "name": "Update CV",
+      "request": {
+        "method": "PUT",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"tel\": \"+33699999999\"\n}" },
+        "url": "http://localhost:3000/api/cvs/{{cvId}}"
+      }
+    },
+    {
+      "name": "Delete CV",
+      "request": { "method": "DELETE", "url": "http://localhost:3000/api/cvs/{{cvId}}" }
+    },
+    {
+      "name": "Export PDF",
+      "request": { "method": "GET", "url": "http://localhost:3000/api/cvs/{{cvId}}/export" }
+    }
+  ],
+  "variable": [
+    { "key": "cvId", "value": "" }
+  ]
+}
+
+

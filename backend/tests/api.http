@@ -1,0 +1,51 @@
+# VS Code REST Client file. Install extension: "REST Client" by Huachao Mao
+
+@baseUrl = http://localhost:3000/api
+@json = application/json
+
+### Health
+GET http://localhost:3000/health
+
+### List CVs
+GET {{baseUrl}}/cvs
+
+### Create CV
+POST {{baseUrl}}/cvs
+Content-Type: {{json}}
+
+{
+  "nom": "Doe",
+  "prenom": "John",
+  "email": "john.doe@mail.com",
+  "tel": "+33612345678",
+  "skills": ["JavaScript", "React"],
+  "languages": ["Français (C2)", "Anglais (B2)"]
+}
+
+### Get CV by id
+@cvId = {{create.response.body.$.data._id}}
+GET {{baseUrl}}/cvs/{{cvId}}
+
+### Update CV
+PUT {{baseUrl}}/cvs/{{cvId}}
+Content-Type: {{json}}
+
+{
+  "tel": "+33699999999"
+}
+
+### Delete CV
+DELETE {{baseUrl}}/cvs/{{cvId}}
+
+### Export PDF
+GET {{baseUrl}}/cvs/{{cvId}}/export
+
+### Upload photo (update filepath to a real file if your client supports it)
+POST http://localhost:3000/api/upload
+Content-Type: multipart/form-data
+
+< ./sample.jpg
+
+
+
+
