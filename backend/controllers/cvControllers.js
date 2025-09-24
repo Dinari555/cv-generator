@@ -26,13 +26,19 @@ exports.getcv = async (req, res) => {
 
  exports.getallcvs = async (req , res) =>{
     try{
-        const cv = await CV.find();
+      if(!req.query.search){
+        res.status(400).json({ message: 'Recherche invalide' });
+    }
+    else{
+      const cv = await CV.find();
         res.status(200).json(cv);
+    }
     }
     catch(error){
         res.status(500).json({ message: 'erreur de recuperation' });
     }
- };
+  };
+
 
 exports.deletecv = async (req, res) => {
   try {
